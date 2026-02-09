@@ -9,6 +9,7 @@
     "cssVariables": true,
     "prefix": ""
   },
+  "style": "",
   "iconLibrary": "lucide",
   "rtl": false,
   "aliases": {
