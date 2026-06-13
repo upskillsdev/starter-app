@@ -1,7 +1,24 @@
- @import "tailwindcss";
+@import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
- @plugin '../hero.ts';
-/* Note: You may need to change the path to fit your project structure */
- @source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
- @custom-variant dark (&:is(.dark *));
+@import "@heroui/styles";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Custom theme overrides (migrated from hero.ts) */
+:root {
+  --background: #f9f9f9;
+  --muted: #71717a;
+  --muted-foreground: #71717a;
+}
+
+.dark {
+  --muted: #909090;
+  --muted-foreground: #a1a1aa;
+  /* Dark theme color tokens used by utility classes like `bg-background` */
+  --background: #0b1220; /* page / surface background */
+  --foreground: #e6eef8; /* default text color on dark */
+  /* separator/border used by `border-separator` / `border` utilities */
+  --separator: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.06);
+}
