@@ -1,12 +1,4 @@
 import { Link } from "@heroui/react";
-import {
-  Navbar as NextUINavbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-} from "@heroui/react";
-import { link as linkStyles } from "@heroui/react";
-import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
@@ -14,44 +6,34 @@ import { Logo } from "@/components/icons";
 
 export const Navbar = () => {
   return (
-    <NextUINavbar maxWidth="xl" position="static">
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand className="gap-3 max-w-fit">
+    <nav className="w-full border-b border-separator bg-background">
+      <header className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+        <div className="flex max-w-fit items-center gap-3">
           <Link
-            className="flex justify-start items-center gap-1"
-            color="foreground"
+            className="flex items-center justify-start gap-1 text-foreground"
             href="/"
           >
             <Logo />
             <p className="font-bold text-inherit">ACME</p>
           </Link>
-        </NavbarBrand>
-        <div className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <Link
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </Link>
-            </NavbarItem>
-          ))}
+          <ul className="ml-2 hidden justify-start gap-4 lg:flex">
+            {siteConfig.navItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  className="text-foreground hover:underline data-[active=true]:font-medium data-[active=true]:text-accent"
+                  href={item.href}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-      </NavbarContent>
 
-      <NavbarContent
-        className="flex basis-1/5 sm:basis-full"
-        justify="end"
-      >
-        <NavbarItem>
+        <div className="flex items-center gap-4">
           <ThemeSwitch />
-        </NavbarItem>
-      </NavbarContent>
-    </NextUINavbar>
+        </div>
+      </header>
+    </nav>
   );
 };
